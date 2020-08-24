@@ -71,3 +71,38 @@ lblTitle = Label(root,borderwidth=10, text = "Welcome Student",bg='#c5d36c',fg='
 myFont = font.Font(family='Castellar', size=35, weight='bold')
 lblTitle ['font']= myFont
 lblTitle.pack()
+
+#creating frame widget for buttons
+buttongroup = Frame(root)
+#creating button widget
+btnSave = Button(buttongroup, text="Save", command=submitForm)
+btnClear = Button(buttongroup, text="Clear", command=clearEntry)
+
+
+#showing it onto the screen
+#myLabel.pack()  #using pack
+#using grid layout
+lblTitle.grid(row=0, column=0, columnspan=2)
+group1.grid(row=1, column=0, padx=55,pady=100)
+lblName.grid(row=2, column=0,pady=10)
+lblId_Number.grid(row=4, column=0,pady=10)
+lblTemperature.grid(row=6, column=0,pady=10)
+lblDate.grid(row=8, column=0,pady=10)
+lblformat.grid(row=9,column=1,pady=0)
+entName.grid(row=2, column=1)
+entId_Number.grid(row=4, column=1)
+entTemperature.grid(row=6, column=1)
+entDate.grid(row=8, column=1)
+buttongroup.grid(row=60, column=0)
+btnSave.grid(row=7, column=0)
+btnClear.grid(row=7, column=1)
+lblformat1.grid(row=3,column=1,pady=0)
+lblformat2.grid(row=5,column=1,pady=0)
+lblformat3.grid(row=7,column=1,pady=0)
+
+
+
+
+
+#call the mainloop of tk
+root.mainloop()
