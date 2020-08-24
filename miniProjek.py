@@ -1,3 +1,4 @@
+#import library
 from tkinter import *
 import tkinter.messagebox
 import pandas as pd
@@ -12,21 +13,23 @@ def clearEntry():
 
 #create action for submitting form data to database
 def submitForm():
-    
+    #excel file name
     path = 'excel.xlsx'
     df1 = pd.read_excel(path)
 
+    #coloum in excel
     SeriesA = df1['Name']
     SeriesB = df1['Id']
     SeriesC = df1['Temp']
     SeriesD = df1['Date']
     
-    
+    #declare variable for entry name,Id number,temp,date
     Name = pd.Series(entName.get())
     Id = pd.Series(entId_Number.get())
     Temp = pd.Series(entTemperature.get())
     Date = pd.Series(entDate.get())
 
+    #insert data to record in excel file
     SeriesA = SeriesA.append(Name)
     SeriesB = SeriesB.append(Id)
     SeriesC = SeriesC.append(Temp)
@@ -36,21 +39,25 @@ def submitForm():
     df2 = pd.DataFrame({"Name":SeriesA, "Id":SeriesB,"Temp":SeriesC,"Date":SeriesD})
 
 
-
+    #Send all data to excel file location
     df2.to_excel(path, index=False)
 
+    #declare entry temperature to float
     temp1=float(entTemperature.get())
 
+    #temperature indicator
     if temp1 > 37.5:
        tkinter.messagebox.showinfo("Recoded", "High Risk. Tempereture is to high. Not be allowed to enter class. ")
     else:
         tkinter.messagebox.showinfo("Recorded", "Low risk. Allowed to enter the class.")
             
-    #show message box for successful query
-    #tkinter.messagebox.showinfo("Success", "Data inserted successfully.")
+
     
     #clear the form after button is hit & show existing data
     clearEntry()
+
+
+
 
 
 #creating main window
@@ -60,6 +67,9 @@ root.geometry("800x800")
 
 #set window colour
 root['background']='#e2ef90'
+
+
+
 
 #creating LabelFrame
 group1 = LabelFrame(root, borderwidth=5, text="Student Record",bg='#c5d36c',fg='#684400',padx=150,pady=50)
@@ -71,6 +81,27 @@ lblTitle = Label(root,borderwidth=10, text = "Welcome Student",bg='#c5d36c',fg='
 myFont = font.Font(family='Castellar', size=35, weight='bold')
 lblTitle ['font']= myFont
 lblTitle.pack()
+
+#lblInstruction = Label(root, text = "Insert new contact")
+lblName = Label(group1, text = " Name           :",bg='#c5d36c',fg='#684400')
+lblId_Number = Label(group1, text = "Id Number   :",bg='#c5d36c',fg='#684400')
+lblTemperature = Label(group1, text = "Temperature  :",padx=10,bg='#c5d36c',fg='#684400')
+lblDate = Label(group1, text = "Date                :",bg='#c5d36c',fg='#684400')
+lblformat = Label(group1, text = "dd/mm/yy",bg='#c5d36c',fg='#684400')
+lblformat1 = Label(group1, text = "Full name",bg='#c5d36c',fg='#684400')
+lblformat2 = Label(group1, text = "ex. 191502844",bg='#c5d36c',fg='#684400')
+lblformat3 = Label(group1, text = "ex. 36.5",bg='#c5d36c',fg='#684400')
+
+
+
+
+#creating entry & text widget 
+entName = Entry(group1, width=50)
+entId_Number = Entry(group1, width=50)
+entTemperature =(Entry(group1, width=50))
+entDate = Entry(group1, width=50)
+
+
 
 #creating frame widget for buttons
 buttongroup = Frame(root)
